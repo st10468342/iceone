@@ -1,0 +1,70 @@
+public class CameraPriceComparison {
+
+    public static void main(String[] args) {
+
+        // Single-dimensional array for manufacturers
+        String[] manufacturers = {"CANON", "SONY", "NIKON"};
+
+        // Two-dimensional array for prices
+        // Column 0 = Mirrorless
+        // Column 1 = DSLR
+        double[][] prices = {
+            {10500, 8500},
+            {9500, 7200},
+            {12000, 8000}
+        };
+
+        double highestDifference = 0;
+        String highestManufacturer = "";
+
+        System.out.println("===============================================");
+        System.out.println("      CAMERA PRICE COMPARISON REPORT");
+        System.out.println("===============================================");
+        System.out.printf("%-10s %-15s %-15s %-15s%n",
+                "Manufacturer", "Mirrorless", "DSLR", "Difference");
+        System.out.println("---------------------------------------------------------------");
+
+        // Loop through the arrays
+        for (int i = 0; i < manufacturers.length; i++) {
+
+            double mirrorless = prices[i][0];
+            double dslr = prices[i][1];
+            double difference = mirrorless - dslr;
+
+            String stars = "";
+            if (difference >= 2500) {
+                stars = " ***";
+            }
+
+            System.out.printf("%-10s R%-14.2f R%-14.2f R%-10.2f%s%n",
+                    manufacturers[i],
+                    mirrorless,
+                    dslr,
+                    difference,
+                    stars);
+
+            // Determine greatest difference
+            if (difference > highestDifference) {
+                highestDifference = difference;
+                highestManufacturer = manufacturers[i];
+            }
+        }
+
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Manufacturer with the greatest price difference: "
+                + highestManufacturer);
+        System.out.printf("Greatest Price Difference: R%.2f%n", highestDifference);
+    }
+}
+
+===============================================
+      CAMERA PRICE COMPARISON REPORT
+===============================================
+Manufacturer Mirrorless     DSLR           Difference
+---------------------------------------------------------------
+CANON       R10500.00       R8500.00       R2000.00
+SONY        R9500.00        R7200.00       R2300.00
+NIKON       R12000.00       R8000.00       R4000.00 ***
+---------------------------------------------------------------
+Manufacturer with the greatest price difference: NIKON
+Greatest Price Difference: R4000.00
